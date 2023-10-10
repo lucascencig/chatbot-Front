@@ -14,7 +14,7 @@ function Chat() {
   const [isConnected, setIsConnected] = useState(false)
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([])
-  const [endSession, setEndSession] = useState(false)
+  const [endSession, setEndSession] = useState(true)
   const [hasReloaded, setHasReloaded] = useState(false)
 
   useEffect(() => {
