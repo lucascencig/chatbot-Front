@@ -12,17 +12,22 @@ const Login = () => {
   }
 
   return (
-    <div className=''>
-      <div className='bg-gradient-to-r from-[#87CE1B] via-[#64B428] to-[#269900]  flex flex-col justify-center items-center font-bold pt-10 pb-4'>
+    <div className='bg-[#def0b93c]'>
+      <div className='bg-[#87CE1B] flex flex-col justify-center items-center font-bold pt-10 pb-4'>
         <h2 className='text-black text-3xl mb-4'>Bienvenido</h2>
         <h4 className='text-black text-lg'>Ingrese su nombre para empezar</h4>
       </div>
 
-      <div className='flex flex-col justify-center items-center h-screen pt-10'>
+      <div className='flex flex-col justify-center items-center m-auto mt-8'>
+        <h2 className='font-bold text-xl pb-4'>Inicia sesión con Google</h2>
+        <input type="email" className='mb-4 w-64 h-8 rounded-full border-2 p-4 font-bold outline-[#00854A]' />
+        <input type="password" className='mb-4 w-64 h-8 rounded-full border-2 p-4 font-bold ' />
+      </div>
+      <div className='flex flex-col justify-center items-center m-auto h-screen -mt-40'>
         <input
           onChange={handleName}
           value={userName}
-          className='bg-[#c9c9c9] p-2 rounded-md mb-4'
+          className='bg-[#ffffff] p-2 rounded-full mb-4 font-bold text-center'
           type="text"
           name=""
           id=""
@@ -30,7 +35,7 @@ const Login = () => {
         />
         <Link to={'/online-chat'}>
           <button
-            className='bg-[#3fdc92] text-white px-4 py-2 rounded-md hover:bg-[#29a76c] transition duration-100'
+            className='bg-[#00854A] font-bold rounded-full text-white px-4 py-2  hover:bg-[#29a76c] transition duration-100'
           >
             Entrar
           </button>
