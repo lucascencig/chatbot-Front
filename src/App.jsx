@@ -5,7 +5,7 @@ import './index.css'
 import { useState, useEffect } from 'react'
 import classnames from 'classnames';
 
-const socket = io.connect('http://localhost:8084')
+const socket = io.connect('https://render-chat-back.onrender.com/')
 
 function App() {
 
