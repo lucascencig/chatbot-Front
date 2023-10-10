@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 import { FaAngleRight } from 'react-icons/fa6'
-import '../../index.css'
+import './index.css'
 import { useState, useEffect } from 'react'
 import { Discuss } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom';
