@@ -3,6 +3,7 @@ import './index.css'
 import { useState, useEffect } from 'react'
 import Chat from './Components/Chat/Chat';
 import Loader from './Components/Loader/Loader';
+import { Footer } from './Components/Footer/Footer';
 import logo from './assets/logo.png'
 
 const socket = io.connect('https://render-chat-back.onrender.com/')
@@ -48,7 +49,7 @@ function App() {
 
       {
         isConnected === true ?
-          <div>
+          <div >
             <div className='bg-[#b3e041]'>
               <img src={logo} alt="logo" className='rounded-xl pt-2 pb-2 flex justify-center items-center m-auto  w-18 h-20' />
 
@@ -73,9 +74,7 @@ function App() {
       {endSession === true ?
         <div className='blur-md bg-[#fffdfd0] h-screen'>
           <Chat />
-          <div className='flex justify-center items-center m-auto'>
-            {/* {errorMessage && <p className="text-red-500">{errorMessage}</p>} */}
-          </div>
+
 
           <div className='flex justify-center items-center m-auto '>
             <button onClick={handleEndSession} className='w-64 h-10 bg-[#00854A] rounded-full text-white font-bold hover:bg-[#29a76c] transition duration-100 ml-2'>Cerrar sesión</button>
@@ -107,6 +106,7 @@ function App() {
           null
       }
 
+      <Footer />
 
     </div>
   )
