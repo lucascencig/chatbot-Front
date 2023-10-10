@@ -5,7 +5,7 @@ import '../../index.css'
 import { useState, useEffect } from 'react'
 
 
-const socket = io.connect('https://chat-online-backend.onrender.com')
+const socket = io.connect('http://127.0.0.1:5173/')
 
 const Chat = () => {
 
@@ -13,11 +13,10 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
-  const [nameLs, setNameLs] = useState('')
-  const userNameFromLocalStorage = localStorage.getItem('userName');
+
+
   useEffect(() => {
-    setNameLs(userNameFromLocalStorage)
-    console.log(nameLs)
+
     socket.on('connect', () => setIsConnected(true));
 
     socket.on('chat_message', (data) => {
@@ -59,7 +58,7 @@ const Chat = () => {
       {
         isConnected === true ?
           <div>
-            <h2 className='bg-green-300 w-full text-center font-bold text-xl font-bold'>CONECTADO COMO: {nameLs}</h2>
+            <h2 className='bg-green-300 w-full text-center font-bold text-xl font-bold'>CONECTADO</h2>
           </div>
           :
           <h2 className='bg-red-300 w-full text-center font-bold text-xl '> NO CONECTADO </h2>
