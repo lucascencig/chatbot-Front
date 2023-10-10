@@ -9,7 +9,7 @@ export default {
     extend: {
 
       fontFamily: {
-        sans: ['Poppins', 'sans'],
+        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
         serif: ['Noto Serif NP Hmong', 'serif'],
         mono: ['Source Code Pro', 'monospace'],
       },
