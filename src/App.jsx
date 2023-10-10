@@ -4,18 +4,18 @@ import { FaAngleRight } from 'react-icons/fa6'
 import './index.css'
 import { useState, useEffect } from 'react'
 import { Discuss } from 'react-loader-spinner'
-import { useNavigate } from 'react-router-dom';
+
 
 
 const socket = io.connect('https://render-chat-back.onrender.com/')
 
 function App() {
-  const navigate = useNavigate()
+
   const [isConnected, setIsConnected] = useState(false)
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([])
   const [endSession, setEndSession] = useState(false)
-  const [hasReloaded, setHasReloaded] = useState(false)
+
 
   useEffect(() => {
     socket.on('connect', () => setIsConnected(true));
@@ -56,9 +56,7 @@ function App() {
 
   }
 
-  const handleEndSessionLogin = () => {
-    navigate('/')
-  }
+
 
   return (
 
@@ -151,7 +149,7 @@ function App() {
           <div className='absolute inset-0 h-40 w-96  rounded-xl bg-[#def0b9] border-2 border-[#c9c9c9] flex justify-center flex-col items-center m-auto p-4'>
             <p className='font-bold text-xl text-center w-10/12'>¿Estás seguro que quieres terminar la sesión?</p>
             <div className='flex justify-center items-center m-auto mt-4'>
-              <button onClick={handleEndSessionLogin} className='w-24 h-10 bg-[#850000] rounded-full text-white font-bold hover:bg-[#a72929] transition duration-100 ml-2 mb-2 '>Si</button>
+              <button className='w-24 h-10 bg-[#850000] rounded-full text-white font-bold hover:bg-[#a72929] transition duration-100 ml-2 mb-2 '>Si</button>
               <button onClick={handleEndSession} className='w-24 h-10 bg-[#00854A] rounded-full text-white font-bold hover:bg-[#29a76c] transition duration-100 ml-2 mb-2'>No</button>
             </div>
 
