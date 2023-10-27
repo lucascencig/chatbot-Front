@@ -1,50 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
+import React, { useState } from 'react';
+
 import { FaAngleRight } from 'react-icons/fa6';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const socket = io.connect('https://render-chat-back.onrender.com/');
+import { useFetchData } from '../../Hooks/useFetchData.jsx';
+import { useScrollToBottom } from '../../Hooks/useScrollToBottom.jsx';
+import { useSocket } from '../../Hooks/useSocket.jsx';
+
+
 
 const Chat = () => {
-  const messagesRef = useRef(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { connected, messages, socket } = useSocket();
+
   const [newMessage, setNewMessage] = useState('');
-  const [messages, setMessages] = useState([]);
   const [endSession, setEndSession] = useState(false);
-  const [scrollData, setScrollData] = useState(Array.from({ length: 10 }));
-  const [hasMore, setHasMore] = useState(true);
 
-  const fetchMoreData = () => {
-    const newScrollData = Array.from({ length: 10 });
-    setScrollData(scrollData.concat(newScrollData));
-    if (scrollData.length > 30) {
-      setHasMore(false);
-    }
-  };
-
-  useEffect(() => {
-    socket.on('connect', () => setIsConnected(true));
-
-    socket.on('chat_message', (data) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
-    });
-
-    return () => {
-      socket.off('connect');
-      socket.off('chat_message');
-    }
-  }, [messages]);
-
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const scrollToBottom = () => {
-    if (messagesRef.current) {
-      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
-    }
-  };
 
   const sendMessage = () => {
     socket.emit('chat_message', {
@@ -54,9 +24,6 @@ const Chat = () => {
     setNewMessage('');
   };
 
-  const handleEndSession = () => {
-    setEndSession(!endSession);
-  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -68,12 +35,12 @@ const Chat = () => {
     <div>
       <div className='w-10/12 border-2 m-auto mt-4 rounded-xl'>
         <InfiniteScroll
-          dataLength={scrollData.length}
-          next={fetchMoreData}
-          hasMore={hasMore}
+          dataLength={useFetchData}
+          next={useFetchData}
+          hasMore={useFetchData}
         >
           <ul
-            ref={messagesRef}
+            ref={scroll}
             className='w-10/12 h-96 overflow-y-auto my-2 mx-auto flex flex-col gap-5'
           >
             {messages.map((mensaje, index) => (
