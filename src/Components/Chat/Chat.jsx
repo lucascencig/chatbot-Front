@@ -1,35 +1,21 @@
 import React, { useState } from 'react';
 
-import { FaAngleRight } from 'react-icons/fa6';
+// import { FaAngleRight } from 'react-icons/fa6';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useFetchData } from '../../Hooks/useFetchData.jsx';
 import { useScrollToBottom } from '../../Hooks/useScrollToBottom.jsx';
 import { useSocket } from '../../Hooks/useSocket.jsx';
-
+import { InputMessage } from '../Inputs/InputMessage.jsx';
 
 
 const Chat = () => {
   const { connected, messages, socket } = useSocket();
 
-  const [newMessage, setNewMessage] = useState('');
   const [endSession, setEndSession] = useState(false);
 
 
-  const sendMessage = () => {
-    socket.emit('chat_message', {
-      user: socket.id,
-      message: newMessage,
-    });
-    setNewMessage('');
-  };
 
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
-  };
 
   return (
     <div>
@@ -58,21 +44,8 @@ const Chat = () => {
           </ul>
         </InfiniteScroll>
       </div>
-      <div className='w-10/12 flex flex-row justify-around items-center m-auto'>
-        <input
-          onChange={(e) => setNewMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-          value={newMessage}
-          type="text"
-          className='bg-[#fff] w-10/12 h-16 border-1 leading-3 my-4 p-2 border-2 border-[#666666] rounded-full mb-4 focus:outline-none active:border:[#3fdc92] font-bold text-lg pl-6 ml-auto'
-          placeholder='Escribe tu mensaje...'
-        />
-        <button
-          onClick={sendMessage}
-          className='w-14 h-14 bg-[#00854A] text-[#fff] rounded-full flex justify-center items-center m-auto text-2xl hover.bg-[#29a76c] transition duration-100 ml-2'
-        >
-          <FaAngleRight />
-        </button>
+      <div>
+        <InputMessage />
       </div>
     </div>
   );
