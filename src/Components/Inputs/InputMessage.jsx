@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-
 import { FaAngleRight } from 'react-icons/fa6';
-
-
 import { useSocket } from '../../Hooks/useSocket.jsx';
+import '../../index.css';
 
-
-import '../../index.css'
 export const InputMessage = () => {
-  const { connected, messages, socket } = useSocket();
+  const { socket } = useSocket();
   const [newMessage, setNewMessage] = useState('');
 
-
   const sendMessage = () => {
+    const senderName = JSON.parse(localStorage.getItem('userData')).username; // Obtener el nombre del remitente desde el localStorage
     socket.emit('chat_message', {
       user: socket.id,
       message: newMessage,
+      senderName: senderName, // Agregar el nombre del remitente al objeto de mensaje
     });
     setNewMessage('');
   };
-
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -44,6 +40,5 @@ export const InputMessage = () => {
         <FaAngleRight />
       </button>
     </div>
-  )
-
-}
+  );
+};

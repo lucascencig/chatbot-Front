@@ -11,8 +11,8 @@ function App() {
     <div className=''>
       <Router>
         <Routes>
-          <Route exact path="/" element={<MainLayout />} />
-          <Route exact path="/loggin" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/chat" element={<MainLayout />} />
 
         </Routes>
       </Router>

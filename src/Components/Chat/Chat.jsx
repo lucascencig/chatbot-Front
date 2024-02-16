@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-
-// import { FaAngleRight } from 'react-icons/fa6';
+import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
-import { useFetchData } from '../../Hooks/useFetchData.jsx';
-import { useScrollToBottom } from '../../Hooks/useScrollToBottom.jsx';
 import { useSocket } from '../../Hooks/useSocket.jsx';
 import { InputMessage } from '../Inputs/InputMessage.jsx';
 
-
 const Chat = () => {
-  const { connected, messages, socket } = useSocket();
+  const { socket, messages, sendMessage, } = useSocket();
 
-  const [endSession, setEndSession] = useState(false);
 
+
+  const currentDate = new Date();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+
+
+  const timeString = `${formattedHours}:${formattedMinutes}`;
 
 
 
@@ -21,14 +24,12 @@ const Chat = () => {
     <div>
       <div className='w-10/12 border-2 m-auto mt-4 rounded-xl'>
         <InfiniteScroll
-          dataLength={useFetchData}
-          next={useFetchData}
-          hasMore={useFetchData}
+          dataLength={messages.length}
+          loader={<h4>Loading...</h4>}
+
+          inverse={true}
         >
-          <ul
-            ref={scroll}
-            className='w-10/12 h-96 overflow-y-auto my-2 mx-auto flex flex-col gap-5'
-          >
+          <ul className='w-10/12 h-96 overflow-y-auto my-2 mx-auto flex flex-col gap-5'>
             {messages.map((mensaje, index) => (
               <li
                 key={index}
@@ -37,16 +38,24 @@ const Chat = () => {
                   : 'bg-[#b3e041] border-none w-auto h-auto p-2 text-[#000000] font-jakarta font-bold text-lg mr-auto rounded-tl-sm rounded-tr-[20px] rounded-bl-[20px] rounded-br-[20px] px-6 flex items-center justify-center'
                   }`}
               >
-                <span className='text-sm'>{mensaje.user === socket.id ? 'Tú' : 'El/Ella'}:</span>
-                <span className='font-bold text-[#000000] text-xl pl-2'>{mensaje.message}</span>
+                <span className='text-sm relative top-[-3px]'>
+                  {mensaje.user === socket.id ? 'Tú' : (mensaje.senderName || 'Invitado')}:
+                </span>
+
+                <span className='font-bold text-[#000000] relative top-[-5px] text-xl pl-2'>
+                  {mensaje.message}
+                </span>
+                <br />
+                <span className='text-[8px] relative top-3 left-2 text-slate-500'> {timeString}</span>
               </li>
             ))}
           </ul>
         </InfiniteScroll>
       </div>
       <div>
-        <InputMessage />
+        <InputMessage sendMessage={sendMessage} />
       </div>
+
     </div>
   );
 };
