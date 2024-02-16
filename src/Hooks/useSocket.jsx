@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 
-const socket = io.connect('http://localhost:8083');
+const socket = io.connect('https://chat-online-blue.vercel.app/chat');
 
 export const useSocket = () => {
   const [isConnected, setIsConnected] = useState(false);
