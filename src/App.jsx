@@ -11,8 +11,8 @@ function App() {
     <div className=''>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route exact path="/chat" element={<MainLayout />} />
+          {/* <Route exact path="/" element={<Login />} /> */}
+          <Route exact path="/" element={<MainLayout />} />
 
         </Routes>
       </Router>

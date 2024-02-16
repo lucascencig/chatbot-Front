@@ -1,33 +1,30 @@
-
 import React, { useState } from 'react';
-// import './index.css';
 import '../../index.css'
-// import Chat from './Components/Chat/Chat';
 import Chat from '../Chat/Chat';
-// import Loader from './Components/Loader/Loader';
 import Loader from '../Loader/Loader';
-// import { Footer } from './Components/Footer/Footer';
 import { Footer } from '../Footer/Footer';
-// import logo from './assets/logo.png';
-import logo from '../../assets/logo.png'
-// import { useSocket } from './Hooks/useSocket.jsx';
+import logo from '../../assets/logo.png';
 import { useSocket } from '../../Hooks/useSocket';
-
-// import { ButtonLoggin } from './Components/Buttons/ButtonLoggin/ButtonLoggin';
-import { ButtonLoggin } from '../Buttons/ButtonLoggin/ButtonLoggin';
 import { useNavigate } from 'react-router-dom';
+import LogginForm from '../Login/Form/LogginForm';
 
 const MainLayout = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { connected } = useSocket();
   const [endSession, setEndSession] = useState(false);
+  const username = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')).username : null;
+
   const handleEndSession = async () => {
-    setEndSession(true)
-    window.localStorage.removeItem('userData').then(navigate('/'))
-  }
+    setEndSession(true);
+    window.localStorage.removeItem('userData');
+    navigate('/');
+  };
 
   return (
     <div>
+      <div className=''>
+        {username ? null : <LogginForm />}
+      </div>
       <div className=''>
         {connected === true ? (
           <div>
@@ -38,22 +35,9 @@ const MainLayout = () => {
                 className='rounded-xl pt-2 pb-2 flex justify-center items-center m-auto w-18 h-20'
               />
             </div>
-            {
-              window.localStorage.getItem('userData').username ?
-                (<h2 className='bg-[#b3e041] h-12 flex items-center m-auto justify-center w-full text-center font-bold text-xl font-bold rounded-br-lg rounded-bl-lg text-[#5c7130]'>
-                  CONECTADO COMO "gest"
-                </h2>)
-                :
-                (<h2 className='bg-[#b3e041] h-12 flex items-center m-auto justify-center w-full text-center font-bold text-xl font-bold rounded-br-lg rounded-bl-lg text-[#5c7130]'>
-                  CONECTADO COMO "{JSON.parse(localStorage.getItem('userData')).username}"
-                </h2>)
-
-
-            }
-            {/* <div className='text-center py-4 '>
-              <ButtonLoggin />
-            </div> */}
-
+            <h2 className='bg-[#b3e041] h-12 flex items-center m-auto justify-center w-full text-center font-bold text-xl font-bold rounded-br-lg rounded-bl-lg text-[#5c7130]'>
+              {username ? `CONECTADO COMO "${username}"` : 'INGRESA UN NOMBRE DE USUARIO'}
+            </h2>
           </div>
         ) : (
           <div>
@@ -76,7 +60,7 @@ const MainLayout = () => {
             <Chat />
             <div className='flex justify-center items-center m-auto '>
               <button
-
+                onClick={handleEndSession}
                 className='w-64 h-10 bg-[#00854A] rounded-full text-white font-bold hover:bg-[#29a76c] transition duration-100 ml-2'
               >
                 Cerrar sesión
@@ -88,7 +72,7 @@ const MainLayout = () => {
             <Chat />
             <div className='flex justify-center items-center m-auto '>
               <button
-
+                onClick={handleEndSession}
                 className='w-64 h-10 bg-[#00854A] rounded-full text-white font-bold hover-bg-[#29a76c] transition duration-100 ml-2'
               >
                 Cerrar sesión
@@ -104,13 +88,11 @@ const MainLayout = () => {
             </p>
             <div className='flex justify-center items-center m-auto mt-4'>
               <button
-
                 className='w-24 h-10 bg-[#893535] rounded-full text-white font-bold hover-bg-[#a72929] transition duration-100 ml-2 mb-2'
               >
                 Si
               </button>
               <button
-
                 className='w-24 h-10 bg-[#00854A] rounded-full text-white font-bold hover-bg-[#29a76c] transition duration-100 ml-2 mb-2'
               >
                 No
@@ -125,4 +107,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default MainLayout;

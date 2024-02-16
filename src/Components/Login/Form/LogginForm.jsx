@@ -5,9 +5,9 @@ const LogginForm = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: '',
+
     username: '',
-    password: ''
+
   });
 
   const handleChange = (e) => {
@@ -20,60 +20,40 @@ const LogginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.email === '' || formData.password === '') {
-      alert('Debes completar los campos');
+    if (formData.username === '') {
+      alert('Debes completar el campos de usuario');
     } else {
       // Guardar los datos en localStorage
       localStorage.setItem('userData', JSON.stringify(formData));
-      navigate('/chat');
+      navigate('/');
       window.location.reload();
     }
   };
 
   return (
-    <div className='flex justify-center items-center flex-col h-screen bg-[#b3e04159]'>
-      <div className="max-w-350 bg-[#b3e041] rounded-3xl p-6 border-4 border-white shadow-xl">
-        <div className="text-center font-extrabold text-3xl text-[#00854A] mt-10">Sign In</div>
-        <form onSubmit={handleSubmit} className="mt-10 w-96 bg-[#b3e041]">
-          <input
-            required
-            className="w-full bg-white border-0 p-4 rounded-lg mt-4 shadow-md border-transparent"
-            type="email"
-            name="email"
-            id="email"
-            placeholder="E-mail"
-            value={formData.email}
-            onChange={handleChange}
-          />
+    <div className='fixed w-full flex justify-center items-center flex-col h-screen bg-[#008549bd]'>
+      <div className="w-96 bg-[#b3e041] rounded-3xl p-6 border-4 border-white ">
+        <span className='text-center font-bold text-lg text-[#00854A] '>Para empezar, debes tener un nombre de usuario...</span>
+        <div className="text-center font-extrabold text-2xl text-[#00854A] mt-10">¡Ingresa el que te más te defina!</div>
+        <form onSubmit={handleSubmit} className="mt-10 w-80 bg-[#b3e041]">
+
           <input type="text"
             required
-            className='w-full bg-white border-0 p-4 rounded-lg mt-4 shadow-md border-transparent'
+            className='w-80 bg-white border-0 p-4 rounded-lg mt-4 shadow-md border-transparent'
             name='username'
             id='username'
-            placeholder='Username'
+            placeholder='Ej: Pepito...'
             value={formData.username}
             onChange={handleChange}
           />
-          <input
-            required
-            className="w-full bg-white border-0 p-4 rounded-lg mt-4 shadow-md border-transparent"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <span className="text-sm text-blue-500 no-underline"><a href="#">Forgot Password ?</a></span>
+
           <input
             className="block w-full font-bold bg-[#00854A] text-black py-3 mt-8 rounded-lg shadow-lg border-none hover:bg-[#29a76c] transition duration-100"
             type="submit"
-            value="Sign In"
+            value="¡Comenzar!"
           />
         </form>
-        <div className='flex justify-center py-4'>
-          <span><a className='text-center text-[#00854A] font-bold' href="#">Learn user licence agreement</a></span>
-        </div>
+
       </div>
     </div>
   );

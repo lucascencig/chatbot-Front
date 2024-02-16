@@ -6,8 +6,6 @@ import { InputMessage } from '../Inputs/InputMessage.jsx';
 const Chat = () => {
   const { socket, messages, sendMessage, } = useSocket();
 
-
-
   const currentDate = new Date();
   const hours = currentDate.getHours();
   const minutes = currentDate.getMinutes();
@@ -17,8 +15,6 @@ const Chat = () => {
 
 
   const timeString = `${formattedHours}:${formattedMinutes}`;
-
-
 
   return (
     <div>
@@ -45,6 +41,8 @@ const Chat = () => {
                 <span className='font-bold text-[#000000] relative top-[-5px] text-xl pl-2'>
                   {mensaje.message}
                 </span>
+                <br />
+                <span className='text-[8px] relative top-3 left-2 text-slate-500'> {timeString}</span>
                 <br />
                 <span className='text-[8px] relative top-3 left-2 text-slate-500'> {timeString}</span>
               </li>
