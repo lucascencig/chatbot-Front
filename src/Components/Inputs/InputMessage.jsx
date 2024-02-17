@@ -42,7 +42,7 @@ export const InputMessage = () => {
       />
       <button
         onClick={sendMessage}
-        className='w-14 h-14 bg-[#00854A] text-[#fff] rounded-full flex justify-center items-center m-auto text-2xl hover.bg-[#29a76c] transition duration-100 ml-2'
+        className='w-14 h-14 bg-[#00854A] text-[#fff] rounded-full flex justify-center items-center m-auto text-2xl hover:bg-[#29a76c]  duration-200 ml-2'
       >
         <FaAngleRight />
       </button>

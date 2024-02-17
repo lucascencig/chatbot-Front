@@ -36,6 +36,55 @@
   animation-delay: calc(0.1s * var(--i));
 }
 
+.buttonsettings {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 19;
+  transition: all 0.3s ease;
+
+}
+
+.buttonsettings:hover {
+  transition: all 0.3s ease;
+  animation: girar 0.5s ease-in-out;
+
+}
+
+.settingsModal {
+  width: 300px;
+  height: 300px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50%, 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: #b3e041 2px solid;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+
+  /* 100% {
+    transform: rotate(120deg);
+  } */
+
+}
+
 @keyframes animate34 {
   0% {
     transform: scale(1);

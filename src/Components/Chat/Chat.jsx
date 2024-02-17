@@ -43,8 +43,8 @@ const Chat = () => {
                 </span>
                 <br />
                 <span className='text-[8px] relative top-3 left-2 text-slate-500'> {timeString}</span>
-                <br />
-                <span className='text-[8px] relative top-3 left-2 text-slate-500'> {timeString}</span>
+
+
               </li>
             ))}
           </ul>
