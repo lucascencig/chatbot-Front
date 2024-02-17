@@ -46,7 +46,7 @@ const MainLayout = () => {
     setOpenModal(false)
   }
   return (
-    <div className={`h-screen ${darkMode ? 'bg-gray-900 text-slate-800' : 'bg-white text-black'}`}>
+    <div className={`h-screen ${darkMode ? 'bg-gray-900 text-slate-800 h-screen' : 'bg-white text-black'}`}>
       <div className=''>
         {username ? null : <LogginForm />}
       </div>
