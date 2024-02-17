@@ -33,8 +33,8 @@ const LogginForm = () => {
   return (
     <div className='fixed w-full flex justify-center items-center flex-col h-screen bg-[#008549bd] z-20'>
       <div className="w-96 bg-[#b3e041] rounded-3xl p-6 border-4 border-white ">
-        <span className='text-center font-bold text-lg text-[#00854A] '>Para empezar, debes tener un nombre de usuario...</span>
-        <div className="text-center font-extrabold text-2xl text-[#00854A] mt-10">¡Ingresa el que te más te defina!</div>
+        <span className='text-center font-bold text-lg text-slate-800 tracking-wide'>Para empezar, debes tener un nombre de usuario...</span>
+        <div className="text-center font-extrabold text-2xl text-slate-800 tracking-widest mt-10">¡Ingresa el que te más te defina!</div>
         <form onSubmit={handleSubmit} className="mt-10 w-80 bg-[#b3e041]">
 
           <input type="text"
